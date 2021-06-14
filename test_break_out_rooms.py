@@ -18,3 +18,6 @@ class Test(TestCase):
         self.assertEqual([["Yodra, Maria, Ana", "Monica, Lucia, Sara"]], break_out_rooms(1, ["Yodra", "Maria",
                                                                                              "Ana", "Monica",
                                                                                              "Lucia", "Sara"], 3))
+
+    def test_one_round_any_size_room(self):
+        self.assertEqual([["Yodra, Maria, Laura"]], break_out_rooms(1, ["Yodra", "Maria", "Laura"], 3))

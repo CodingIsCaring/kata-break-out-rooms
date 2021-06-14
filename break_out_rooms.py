@@ -1,14 +1,9 @@
 
 
 def break_out_rooms(rounds, participants, room_size):
-    total_rooms = len(participants) / room_size
-
-    if len(participants) == room_size:
-        result = [participants[0] + ", " + participants[1]]
-    else:
-        result = []
-        for index in range(0, len(participants), room_size):
-            result.append(get_random_participants(index, participants, room_size))
+    result = []
+    for index in range(0, len(participants), room_size):
+        result.append(get_random_participants(index, participants, room_size))
 
     return [result]
 
