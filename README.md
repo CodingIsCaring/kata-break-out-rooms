@@ -1,17 +1,17 @@
 # Kata Break-out rooms
 
 ## Iteration 1
-We want to make groups of people to organize them into different random work teams.
+We would like to make groups of people to organise them into different random work teams.
 
-Write a function that takes the list of attendees, the size of the rooms (number of people per room) and the number of rounded.
+Write a function that takes the list of attendees, the size of the rooms (number of people per room) and the number of rounds.
 
-The function will organize the rooms minimizing the number of repetitions per round.
+The function will organise the rooms minimizing the number of repetitions per round.
 
 The result of the function is a list of lists containing rooms with participants.
 
 ## Iteration 2
 
-The function will be deterministic, given the same round and the same participants and room size, the result will be the same. This will serve as a story.
+The function will be deterministic, in case the same number of rounds, the same participants and room size are given again, the result will be the same. This will serve as a history.
 
 ## Participants:
 
