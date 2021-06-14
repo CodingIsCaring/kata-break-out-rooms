@@ -11,7 +11,7 @@ The result of the function is a list of lists containing rooms with participants
 
 ## Iteration 2
 
-The function will be deterministic, in case the same number of rounds, the same participants and room size are given again, the result will be the same. This will serve as a history.
+Coming soon... 🥁
 
 ## Example
 
