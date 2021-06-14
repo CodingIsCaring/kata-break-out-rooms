@@ -1,5 +1,3 @@
-def sum(number_one, number_two):
-    return number_one + number_two
 
 
 def break_out_rooms(rounds, participants, room_size):

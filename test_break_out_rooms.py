@@ -1,11 +1,8 @@
 from unittest import TestCase
-from break_out_rooms import sum, break_out_rooms
+from break_out_rooms import break_out_rooms
 
 
 class Test(TestCase):
-    def test_sum(self):
-        self.assertEqual(4, sum(2, 2))
-
     def test_one_round(self):
         self.assertEqual([["Yodra, Maria"]], break_out_rooms(1, ["Yodra", "Maria"], 2))
 
