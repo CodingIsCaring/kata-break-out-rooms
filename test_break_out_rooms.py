@@ -1,23 +1,43 @@
-from unittest import TestCase
-from break_out_rooms import break_out_rooms
+from pathlib import Path
+
+import pytest
+
+from break_out_rooms import break_out_rooms, get_rooms_in_round
 
 
-class Test(TestCase):
-    def test_one_round(self):
-        self.assertEqual([["Yodra, Maria"]], break_out_rooms(1, ["Yodra", "Maria"], 2))
+@pytest.fixture
+def odd_participants():
+    f = Path('test_participants.txt')
+    return f.read_text().strip().split('\n')
 
-    def test_one_round_two_rooms(self):
-        self.assertEqual([["Yodra, Maria", "Ana, Monica"]], break_out_rooms(1, ["Yodra", "Maria", "Ana", "Monica"], 2))
 
-    def test_one_round_three_rooms(self):
-        self.assertEqual([["Yodra, Maria", "Ana, Monica", "Lucia, Sara"]], break_out_rooms(1, ["Yodra", "Maria",
-                                                                                               "Ana", "Monica",
-                                                                                               "Lucia", "Sara"], 2))
+@pytest.fixture
+def even_participants():
+    f = Path('test_participants.txt')
+    return f.read_text().strip().split('\n')[:-1]
 
-    def test_one_round_increasing_room_size(self):
-        self.assertEqual([["Yodra, Maria, Ana", "Monica, Lucia, Sara"]], break_out_rooms(1, ["Yodra", "Maria",
-                                                                                             "Ana", "Monica",
-                                                                                             "Lucia", "Sara"], 3))
 
-    def test_one_round_any_size_room(self):
-        self.assertEqual([["Yodra, Maria, Laura"]], break_out_rooms(1, ["Yodra", "Maria", "Laura"], 3))
+def test_get_rooms_in_round_size_2(even_participants):
+    print(even_participants)
+    rooms = get_rooms_in_round(even_participants, 2)
+    assert len(rooms) == 5
+    assert all([len(r) == 2 for r in rooms])
+
+
+def test_get_rooms_in_round_size_2_odd(odd_participants):
+    rooms = get_rooms_in_round(odd_participants, 2)
+    assert len(rooms) == 5
+    assert all([len(r) == 2 for r in rooms[:-1]])
+    assert len(rooms[-1]) == 3
+
+
+def test_break_out_rooms_non_deterministic(even_participants):
+    rounds = break_out_rooms(2, even_participants, 2, False)
+    assert len(rounds) == 2
+
+
+def test_break_out_rooms_deterministic(even_participants):
+    rounds = break_out_rooms(2, even_participants, 2, True)
+    assert len(rounds) == 2
+    round1, round2 = rounds
+    assert all([room1 == room2 for room1, room2 in zip(round1, round2)])
