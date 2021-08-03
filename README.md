@@ -13,25 +13,9 @@ Each inner list contains strings that represent every room.
 
 Every string contains the names of the participants in that room.
 
-### ToDo List
-
-[ ] Generate random combinations
-
-[ ] Consider more than one round
-
-[ ] Combinations should not have the same participants in different rounds
-
-### To implement
-
-For each round
-      1. Randomly draw 1 person from the list of participants.
-      2. Add this person to the room.
-      3. Check if the person is not in another room with the same people.
-      4. Remove this person from the participant list to assign
-
 ## Iteration 2
 
-Coming soon... 🥁
+The function will be deterministic, given the same round and the same participants and room size, the result will be the same.
 
 ## Example
 

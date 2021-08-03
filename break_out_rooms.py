@@ -1,19 +1,23 @@
 import random
 
 
+def create_room_with_random_participants(room_size, shadow_participants):
+    room = []
+    for _ in range(room_size):
+        randomized_index = random.randint(0, len(shadow_participants) - 1)
+        randomized_participant = shadow_participants.pop(randomized_index)
+        room.append(randomized_participant)
+    return room
+
+
 def get_rooms_in_round(participants: list[str], room_size: int, deterministic=False):
     if deterministic:
         random.seed(room_size)
     rooms = []
     shadow_participants = participants.copy()
     while len(shadow_participants) >= 2 * room_size:
-        room = []
-        for _ in range(room_size):
-            randomized_index = random.randint(0, len(shadow_participants) - 1)
-            randomized_participant = shadow_participants.pop(randomized_index)
-            room.append(randomized_participant)
+        room = create_room_with_random_participants(room_size, shadow_participants)
         rooms.append(room)
-    # create room with pending participants
     rooms.append(shadow_participants)
     return rooms
 
